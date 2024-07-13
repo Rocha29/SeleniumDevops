@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
+    <option name="projectFiles" value="$PROJECT_DIR$/src/test/java/pages/CadastroUsuarioPage.java;/Users/robsonrocha/Downloads/DevopsSeleniumWebdriverQazando/src/test/java/pages/LoginPage.java;/Users/robsonrocha/Downloads/DevopsSeleniumWebdriverQazando/src/test/java/runner/RunBase.java;/Users/robsonrocha/Downloads/DevopsSeleniumWebdriverQazando/src/test/java/runner/RunCucumber.java;/Users/robsonrocha/Downloads/DevopsSeleniumWebdriverQazando/src/test/java/steps/CadastroUsuarioSteps.java;/Users/robsonrocha/Downloads/DevopsSeleniumWebdriverQazando/src/test/java/steps/LoginSteps.java;/Users/robsonrocha/Downloads/DevopsSeleniumWebdriverQazando/src/test/java/support/Commands.java;/Users/robsonrocha/Downloads/DevopsSeleniumWebdriverQazando/src/test/java/support/Utils.java;/Users/robsonrocha/Downloads/DevopsSeleniumWebdriverQazando/pom.xml;/Users/robsonrocha/Downloads/DevopsSeleniumWebdriverQazando/README.md" />
+  </component>
+</project>
