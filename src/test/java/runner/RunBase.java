@@ -51,6 +51,13 @@ public class RunBase {
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }
 
+        // Adicione um tempo de espera após iniciar o ChromeDriver
+        try {
+            Thread.sleep(30000); // 30 segundos
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return driver;
     }
 

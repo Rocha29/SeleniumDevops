@@ -39,7 +39,7 @@ jobs:
           chromedriver --url-base=/wd/hub &
 
       - name: Esperar o Chromedriver iniciar
-        run: sleep 10
+        run: sleep 30
 
       - name: Verificar se o Chromedriver está em execução
         run: |
