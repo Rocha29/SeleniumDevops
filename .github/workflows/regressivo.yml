@@ -1,12 +1,12 @@
 name: Teste Regressivos
 
-  on:
-    pull_request:
-      branches: [ master ]
+on:
+  pull_request:
+    branches: [ master ]
 
 jobs:
   RunTest:
-    runs-on: Ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -22,7 +22,9 @@ jobs:
         run: |
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt install ./google-chrome*.deb
+
       - uses: nanasess/setup-chromedriver@v2
+
       - run: |
           export DISPLAY=:99
           chromedriver --url-base=/wd/hub &
@@ -30,5 +32,3 @@ jobs:
 
       - name: Run Test
         run: mvn test -Dtest=RunCucumber -Dbrowser=chrome-ci cluecumber-report:reporting
-
-
