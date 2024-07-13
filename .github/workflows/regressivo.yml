@@ -1,4 +1,4 @@
-name: Teste Regressivos
+name: Teste Regressivos DEVOPS
 
 on:
   pull_request:
