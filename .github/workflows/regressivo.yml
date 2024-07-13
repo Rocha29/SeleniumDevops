@@ -35,6 +35,7 @@ jobs:
         run: |
           export DISPLAY=:99
           sudo Xvfb :99 -ac -screen 0 1280x1024x24 > /dev/null 2>&1 &
+          sleep 3 # Adiciona um pequeno atraso
           chromedriver --url-base=/wd/hub &
 
       - name: Run Test
