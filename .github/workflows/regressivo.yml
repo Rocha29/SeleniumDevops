@@ -40,11 +40,11 @@ jobs:
           sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # opcional
 
       - name: Esperar o Chromedriver iniciar
-        run: sleep 30
+        run: sleep 60
 
       - name: Verificar se o Chromedriver está em execução
         run: |
           ps -ef | grep chromedriver
 
       - name: Run Test
-        run: mvn test -Dtest=RunCucumber -Dbrowser=chrome-ci cluecumber-report:reporting
+        run: mvn test -Dtest=RunCucumber -Dbrowser=chrome-ci cluecumber-report:reporting -X
