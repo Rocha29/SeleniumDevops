@@ -9,15 +9,14 @@ import java.util.concurrent.TimeUnit;
 
 public class RunBase {
 
-    static WebDriver driver;
+    private static WebDriver driver;
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
         return driver;
     }
 
     public static WebDriver getDriver(String browser) {
-
-        if (driver !=  null) {
+        if (driver != null) {
             driver.quit();
         }
 
@@ -26,24 +25,38 @@ public class RunBase {
                 driver = new ChromeDriver();
                 break;
             case "chrome-ci":
-                ChromeOptions option = new ChromeOptions();
-                option.addArguments("--headless");
-                driver = new ChromeDriver(option);
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--headless");
+                options.addArguments("--disable-gpu");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("--window-size=1920,1080");
+                options.addArguments("--whitelisted-ips");
+                options.addArguments("--disable-extensions");
+                options.addArguments("--verbose");
+                driver = new ChromeDriver(options);
                 break;
             case "firefox":
                 driver = new FirefoxDriver();
                 break;
             case "edge":
-                throw new IllegalArgumentException("Edge ainda nao suportado");
+                throw new IllegalArgumentException("Edge ainda não suportado");
             default:
-                throw new IllegalArgumentException("Navegador não encontrado! Passe um navegador existente: chrome, forefox ou edge.");
+                throw new IllegalArgumentException("Navegador não encontrado! Passe um navegador existente: chrome, firefox ou edge.");
         }
 
-        if(driver != null){
+        if (driver != null) {
+            driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        }
+
+        // Adicionar um tempo de espera após iniciar o ChromeDriver
+        try {
+            Thread.sleep(30000); // 30 segundos
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
         return driver;
     }
-
 }

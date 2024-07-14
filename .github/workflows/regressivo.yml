@@ -16,19 +16,17 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '8'
-          distribution: 'adopt'
+          distribution: 'temurin'
           cache: maven
 
       - name: Instalar Chrome
         run: |
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt install -y ./google-chrome-stable_current_amd64.deb
+          sudo apt install -y ./google-chrome*.deb
           rm google-chrome-stable_current_amd64.deb
 
-      - name: Setup Chromedriver
-        uses: nanasess/setup-chromedriver@v2
-        with:
-          version: latest
+      - uses: nanasess/setup-chromedriver@v2
+
 
       - name: Verificar versões do Chrome e Chromedriver
         run: |
@@ -48,4 +46,4 @@ jobs:
           ps -ef | grep chromedriver
 
       - name: Run Test
-        run: mvn test -Dtest=RunCucumber -Dbrowser=chrome-ci cluecumber-report:reporting
+        run: mvn -X test -Dtest=RunCucumber -Dbrowser=chrome-ci cluecumber-report:reporting
