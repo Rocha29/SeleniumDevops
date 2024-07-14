@@ -20,9 +20,9 @@ jobs:
 
       - name: Instalar Chrome e Chromedriver
       - uses: browser-actions/setup-chrome@v1
-          with:
-            chrome-version: 126
-            install-chromedriver: true
+        with:
+          chrome-version: 126
+          install-chromedriver: true
 
 
       - name: Verificar versões do Chrome e Chromedriver
