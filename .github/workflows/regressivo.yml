@@ -22,13 +22,13 @@ jobs:
       - name: Instalar Chrome
         run: |
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt install -y ./google*.deb
-
+          sudo apt install -y ./google-chrome*.deb
+          rm google-chrome-stable_current_amd64.deb
 
       - name: Setup ChromeDriver
-      - uses: actions/checkout@v2
-      - uses: nanasess/setup-chromedriver@v2
-
+        uses: nanasess/setup-chromedriver@v2
+        with:
+          chromedriver-version: 'latest'
 
       - name: Verificar versões do Chrome e Chromedriver
         run: |
