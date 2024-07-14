@@ -20,7 +20,7 @@ jobs:
           cache: maven
 
       - name: Setup Chrome e Chromedriver
-        uses: nanasess/setup-chrome@v1
+        uses: nanasess/setup-chrome@v2
 
       - name: Configurar Display e Chromedriver
         run: |
