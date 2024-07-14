@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '8'
-          distribution: 'adopt'
+          distribution: 'temurin'
           cache: maven
 
       - name: Instalar Chrome
@@ -28,7 +28,7 @@ jobs:
       - name: Setup Chromedriver
         uses: nanasess/setup-chromedriver@v2
         with:
-          version: latest
+          chromedriver-version: latest
 
       - name: Verificar versões do Chrome e Chromedriver
         run: |
