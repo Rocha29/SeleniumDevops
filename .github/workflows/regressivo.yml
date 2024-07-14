@@ -26,9 +26,12 @@ jobs:
           rm google-chrome-stable_current_amd64.deb
 
       - name: Setup Chromedriver
-        uses: nanasess/setup-chromedriver@v2
-        with:
-          chromedriver-version: latest
+        run: |
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+          wget -N https://chromedriver.storage.googleapis.com/$CHROME_VERSION/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+          rm chromedriver_linux64.zip
 
       - name: Verificar versões do Chrome e Chromedriver
         run: |
