@@ -9,33 +9,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout do código
+        uses: actions/checkout@v3
 
-      - name: Instalar Java 8
+      - name: Setup Java
         uses: actions/setup-java@v2
         with:
           java-version: '8'
           distribution: 'adopt'
           cache: maven
 
-      - name: Instalar Chrome
-        run: |
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt install ./google-chrome*.deb
-
-      - uses: actions/checkout@v2
-      - uses: nanasess/setup-chromedriver@v2
-
-      - name: Verificar versões do Chrome e Chromedriver
-        run: |
-          google-chrome --version
-          chromedriver --version
+      - name: Setup Chrome e Chromedriver
+        uses: nanasess/setup-chrome@v1
 
       - name: Configurar Display e Chromedriver
         run: |
           export DISPLAY=:99
-          chromedriver --url-base=/wd/hub &
-          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
+          chromedriver --url-base=/wd/hub --verbose --log-path=/tmp/chromedriver.log &
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
 
       - name: Esperar o Chromedriver iniciar
         run: sleep 30
@@ -44,5 +35,6 @@ jobs:
         run: |
           ps -ef | grep chromedriver
 
-      - name: Run Test
-        run: mvn test -Dtest=RunCucumber -Dbrowser=chrome-ci cluecumber-report:reporting
+      - name: Executar Testes
+        run: |
+          mvn test -Dtest=RunCucumber -Dbrowser=chrome-ci cluecumber-report:reporting
