@@ -9,14 +9,13 @@ import java.util.concurrent.TimeUnit;
 
 public class RunBase {
 
-    static WebDriver driver;
+    private static WebDriver driver;
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
         return driver;
     }
 
     public static WebDriver getDriver(String browser) {
-
         if (driver != null) {
             driver.quit();
         }
@@ -51,7 +50,7 @@ public class RunBase {
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }
 
-        // Adicione um tempo de espera após iniciar o ChromeDriver
+        // Adicionar um tempo de espera após iniciar o ChromeDriver
         try {
             Thread.sleep(30000); // 30 segundos
         } catch (InterruptedException e) {
@@ -60,5 +59,4 @@ public class RunBase {
 
         return driver;
     }
-
 }
