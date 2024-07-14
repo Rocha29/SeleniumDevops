@@ -28,8 +28,7 @@ jobs:
       - name: Setup ChromeDriver
       - uses: actions/checkout@v2
       - uses: nanasess/setup-chromedriver@v2
-        with:
-          chromedriver-version: 'latest'
+
 
       - name: Verificar versões do Chrome e Chromedriver
         run: |
