@@ -24,7 +24,8 @@ jobs:
           sudo apt install ./google-chrome*.deb
 
       - name: Instalar Chromedriver
-        uses: nanasess/setup-chromedriver@v1
+      - uses: actions/checkout@v2
+      - uses: nanasess/setup-chromedriver@v2
 
       - name: Verificar versões do Chrome e Chromedriver
         run: |
@@ -34,9 +35,8 @@ jobs:
       - name: Configurar Display e Chromedriver
         run: |
           export DISPLAY=:99
-          sudo Xvfb :99 -ac -screen 0 1280x1024x24 > /dev/null 2>&1 &
-          sleep 5
-          chromedriver --url-base=/wd/hub > chromedriver.log 2>&1 &
+          chromedriver --url-base=/wd/hub &
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
 
       - name: Esperar o Chromedriver iniciar
         run: sleep 30
