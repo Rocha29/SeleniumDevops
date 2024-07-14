@@ -19,10 +19,15 @@ jobs:
           cache: maven
 
       - name: Instalar Chrome e Chromedriver
-      - uses: browser-actions/setup-chrome@v1
+      - uses: actions/checkout@v2
+      - uses: nanasess/setup-chromedriver@v2
         with:
-          chrome-version: 126
-          install-chromedriver: true
+          # Optional: do not specify to match Chrome's version
+          chromedriver-version: '126.0.6478.126'
+      - run: |
+          export DISPLAY=:99
+          chromedriver --url-base=/wd/hub &
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
 
 
       - name: Verificar versões do Chrome e Chromedriver
