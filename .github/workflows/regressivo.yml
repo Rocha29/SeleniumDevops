@@ -25,13 +25,10 @@ jobs:
           sudo apt install -y ./google-chrome-stable_current_amd64.deb
           rm google-chrome-stable_current_amd64.deb
 
-      - name: Instalar a última versão do ChromeDriver
-        run: |
-          LATEST_CHROMEDRIVER=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
-          wget https://chromedriver.storage.googleapis.com/${LATEST_CHROMEDRIVER}/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          sudo mv chromedriver /usr/local/bin/
-          rm chromedriver_linux64.zip
+      - name: Setup ChromeDriver
+        uses: nanasess/setup-chromedriver@v2
+        with:
+          chromedriver-version: 'latest'
 
       - name: Verificar versões do Chrome e Chromedriver
         run: |
