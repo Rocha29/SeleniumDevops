@@ -26,9 +26,9 @@ jobs:
           rm google-chrome-stable_current_amd64.deb
 
       - name: Setup ChromeDriver
-        uses: nanasess/setup-chromedriver@v2
-        with:
-          chromedriver-version: 'latest'
+      - uses: actions/checkout@v2
+      - uses: nanasess/setup-chromedriver@v2
+
 
       - name: Verificar versões do Chrome e Chromedriver
         run: |
